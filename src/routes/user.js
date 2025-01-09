@@ -53,4 +53,21 @@ router.post("/signin", async (req, res) => {
   }
 });
 
+//Check if username avaliable
+router.post("/username", async (req, res) => {
+  try {
+    const user = await User.findOne({
+      _id: req.body.username,
+    });
+    if (user) {
+      res.status(200).json({ exists: true });
+    } else if (!user) {
+      res.status(200).json({ exists: false });
+    }
+  } catch (err) {
+    res.status(500);
+    throw err;
+  }
+});
+
 export default router;
