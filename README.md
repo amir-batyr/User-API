@@ -1,0 +1,29 @@
+# User Api
+
+POST http://localhost:3000/api/user/signup HTTP/1.1
+Content-Type: application/json
+
+{
+    "username":"usernamee",
+    "email":"email",
+    "password":"12345"
+}
+
+###
+
+POST http://localhost:3000/api/user/signin HTTP/1.1
+Content-Type: application/json
+
+{
+    "email":"email",
+    "password":"12345"
+}
+
+###
+
+POST http://localhost:3000/api/user/username HTTP/1.1
+Content-Type: application/json
+
+{
+    "username":"username"
+}
