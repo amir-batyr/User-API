@@ -1,29 +1,13 @@
-# User Api
+# User Sign In/Sign up API
 
-POST http://localhost:3000/api/user/signup HTTP/1.1
-Content-Type: application/json
+Writen by Amir Batyrov.
+With the help of Javascript ALL-IN-ONE Book by Chris Minnick
 
-{
-    "username":"usernamee",
-    "email":"email",
-    "password":"12345"
-}
+## How to use
 
-###
-
-POST http://localhost:3000/api/user/signin HTTP/1.1
-Content-Type: application/json
-
-{
-    "email":"email",
-    "password":"12345"
-}
-
-###
-
-POST http://localhost:3000/api/user/username HTTP/1.1
-Content-Type: application/json
-
-{
-    "username":"username"
-}
+1. [Download REST Client for VS Code](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
+2. [Download and Setup MongoDB server](https://www.mongodb.com/try/download/community)
+3. Modify **./src/app.js** to connect to your MongoDB Database
+4. Change the name of **./example_env** to **.env** and ==CHANGE THE ACCESS_TOKEN_SECRET VARIABLE TO ANY RANDOM STRING AT LEAST 32 CHAR LONG!==
+5. Run `npm start` in terminal
+6. Use the **./api/user.http** with REST Client to send HTTP requests
