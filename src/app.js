@@ -1,5 +1,6 @@
 import express from "express";
 import userRoutes from "./routes/user.js";
+import protectedRoutes from "./routes/protected.js";
 import mongoose from "mongoose";
 
 mongoose
@@ -10,5 +11,5 @@ const app = express();
 
 app.use(express.json());
 app.use("/api/user", userRoutes);
-
+app.use("/api/protected", protectedRoutes);
 export default app;
