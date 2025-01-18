@@ -20,7 +20,7 @@ Contains login/protected routes (Most important!)
 
 ### ./src/app.js
 
-Databese connection and Routes setup
+Database connection and Routes setup
 
 ### ./src/server.js
 
