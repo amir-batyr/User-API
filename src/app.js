@@ -3,6 +3,7 @@ import userRoutes from "./routes/user.js";
 import protectedRoutes from "./routes/protected.js";
 import mongoose from "mongoose";
 
+//Connect to database
 mongoose
   .connect("mongodb://0.0.0.0:27017/Postify")
   .then(() => console.log("Connected to databse!"))

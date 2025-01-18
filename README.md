@@ -10,4 +10,4 @@ With the help of Javascript ALL-IN-ONE Book by Chris Minnick
 3. Modify **./src/app.js** to connect to your MongoDB Database
 4. Change the name of **./example_env** to **.env** and ==CHANGE THE ACCESS_TOKEN_SECRET VARIABLE TO ANY RANDOM STRING AT LEAST 32 CHAR LONG!==
 5. Run `npm start` in terminal
-6. Use the **./api/user.http** with REST Client to send HTTP requests
+6. Use the **./api/example.http** with REST Client to send HTTP requests

@@ -1,4 +1,3 @@
-//Get Env Variables
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -9,28 +8,44 @@ import jwt from "jsonwebtoken";
 
 function validateToken(req, res, next) {
   const authHeader = req.headers["authorization"];
-  const token = authHeader.split(" ")[1];
+  if (!authHeader) {
+    return res.status(400).json({ error: "Authorization header not present" });
+  }
 
-  if (token == null) res.sendStatus(400).send("Token not present");
-  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+  const token = authHeader.split(" ")[1];
+  if (!token) {
+    return res.status(400).json({ error: "Token not present" });
+  }
+
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async (err, data) => {
     if (err) {
-      res.status(403).send("Token invalid");
-    } else {
-      req.user = user;
+      return res.status(403).json({ error: "Token invalid or expired" });
+    }
+
+    try {
+      const user = await User.findOne({ email: data.email });
+      if (!user) {
+        return res.status(403).json({ error: "Token invalid or expired" });
+      }
+
+      req.username = user.username;
       next();
+    } catch (dbError) {
+      console.error("Database error:", dbError);
+      res.status(500).json({ error: "Internal server error" });
     }
   });
 }
 
 const router = express.Router();
 
-//Create new User
-router.post("", validateToken, (req, res, next) => {
+// Get the authenticated user's username
+router.get("", validateToken, (req, res) => {
   try {
-    console.dir(req.user);
+    res.status(200).json({ username: req.username });
   } catch (err) {
-    res.status(500);
-    throw err;
+    console.error("Error in GET /:", err);
+    res.status(500).json({ error: "Internal server error" });
   }
 });
 
