@@ -2,6 +2,7 @@ import express from "express";
 import userRoutes from "./routes/user.js";
 import protectedRoutes from "./routes/protected.js";
 import mongoose from "mongoose";
+import helmet from "helmet";
 
 //Connect to database
 mongoose
@@ -9,6 +10,9 @@ mongoose
   .then(() => console.log("Connected to databse!"))
   .catch(() => console.log("Connection failed!"));
 const app = express();
+
+// Use Helmet!
+app.use(helmet());
 
 app.use(express.json());
 app.use("/api/user", userRoutes);
