@@ -8,9 +8,9 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 // Function to generate a JWT access token
-function generateAccessToken(email) {
-  return jwt.sign(email, process.env.ACCESS_TOKEN_SECRET, {
-    expiresIn: "1800s",
+function generateJWT(email, exp, secret) {
+  return jwt.sign(email, secret, {
+    expiresIn: exp,
   });
 }
 
@@ -43,9 +43,20 @@ router.post("/signup", async (req, res) => {
 
     await newUser.save();
 
-    // Generate and send JWT token
-    const accessToken = generateAccessToken({ email });
-    res.status(201).json({ accessToken });
+    // Generate and send JWT tokens
+    const accessToken = generateJWT(
+      { email },
+      "20s",
+      process.env.ACCESS_TOKEN_SECRET
+    );
+    const refreshToken = generateJWT(
+      { email },
+      "7d",
+      process.env.REFRESH_TOKEN_SECRET
+    );
+    res
+      .status(201)
+      .json({ accessToken: accessToken, refreshToken: refreshToken });
   } catch (error) {
     console.error("Signup error:", error);
     res.status(500).json({ error: "Internal server error" });
@@ -70,9 +81,20 @@ router.post("/signin", async (req, res) => {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
-    // Generate and send JWT token
-    const accessToken = generateAccessToken({ email });
-    res.status(200).json({ accessToken });
+    // Generate and send JWT tokens
+    const accessToken = generateJWT(
+      { email },
+      "20s",
+      process.env.ACCESS_TOKEN_SECRET
+    );
+    const refreshToken = generateJWT(
+      { email },
+      "7d",
+      process.env.REFRESH_TOKEN_SECRET
+    );
+    res
+      .status(200)
+      .json({ accessToken: accessToken, refreshToken: refreshToken });
   } catch (error) {
     console.error("Signin error:", error);
     res.status(500).json({ error: "Internal server error" });
@@ -94,4 +116,3 @@ router.post("/username", async (req, res) => {
 });
 
 export default router;
-

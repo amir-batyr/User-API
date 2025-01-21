@@ -30,4 +30,10 @@ Content-Type: application/json
 
 GET http://localhost:3000/api/protected HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer TOKEN
+Authorization: Bearer accessTOKEN
+
+###
+
+GET http://localhost:3000/api/protected/refresh HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer refreshTOKEN

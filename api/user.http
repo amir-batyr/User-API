@@ -30,4 +30,10 @@ Content-Type: application/json
 
 GET http://localhost:3000/api/protected HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaXJAb3V0bG9vay5jb20iLCJpYXQiOjE3MzcyODg4MzgsImV4cCI6MTczNzI5MDYzOH0.u4uY26b6XCTBh5EfUJ5VauqFzIhpkNnhHHtkew9w-2E
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaXJAb3V0bG9vay5jb20iLCJpYXQiOjE3Mzc0NzkxNTksImV4cCI6MTczNzQ3OTE3OX0.ZXqPEpO7-2ll_dInY445Ihs5iqZrz3rd1v3ndBdFMe8
+
+###
+
+GET http://localhost:3000/api/protected/refresh HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaXJAb3V0bG9vay5jb20iLCJpYXQiOjE3Mzc0NzkxMDEsImV4cCI6MTczODA4MzkwMX0.GATyW1Y1SSUIK-nQarOlsNL3EFdypjIn4ukZiyja82M
